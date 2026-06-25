@@ -64,7 +64,6 @@ st.bar_chart(
 st.dataframe(job_summary)
 
     hourly_df = df[df["Numeric Rate"].notna()].copy()
-
     hourly_df["Regular Pay"] = (
         hourly_df["Regular Hours"]
         * hourly_df["Numeric Rate"]
@@ -75,7 +74,6 @@ st.dataframe(job_summary)
         * hourly_df["Numeric Rate"]
         * 1.5
     )
-
     hourly_df["Gross Pay"] = (
         hourly_df["Regular Pay"]
         + hourly_df["OT Pay"]
