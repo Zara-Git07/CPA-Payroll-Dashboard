@@ -49,6 +49,19 @@ if uploaded_file:
         df["Overtime Hours"],
         errors="coerce"
     ).fillna(0)
+    st.subheader("Payroll by Job Title")
+
+job_summary = (
+    hourly_df
+    .groupby("Job Title")["Gross Pay"]
+    .sum()
+    .reset_index()
+)
+st.bar_chart(
+    job_summary.set_index("Job Title")
+)
+
+st.dataframe(job_summary)
 
     hourly_df = df[df["Numeric Rate"].notna()].copy()
 
@@ -109,6 +122,13 @@ col4.metric(
     )
 
     st.subheader("Payroll Register")
+st.subheader("Overtime Alerts")
+
+overtime_alerts = hourly_df[
+    hourly_df["Overtime Hours"] > 5
+]
+
+st.dataframe(overtime_alerts)
 
     st.dataframe(
         hourly_df[
