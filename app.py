@@ -4,7 +4,10 @@ import numpy as np
 
 st.set_page_config(
     page_title="CPA Payroll Dashboard",
-    tab1, tab2 = st.tabs([
+    layout="wide"
+)
+
+tab1, tab2 = st.tabs([
     "Payroll Dashboard",
     "AI Email Assistant"
 ])
@@ -13,11 +16,11 @@ st.set_page_config(
 
 st.title("CPA Payroll Dashboard")
 with tab1:
-uploaded_file = st.file_uploader(
-    "Upload Payroll Excel File",
-    type=["xlsx"]
-)
 
+    uploaded_file = st.file_uploader(
+        "Upload Payroll Excel File",
+        type=["xlsx"]
+    )
 if uploaded_file:
 
     # Read Excel File
@@ -197,7 +200,7 @@ if uploaded_file:
             ]
         ]
     )
-    with tab2:
+with tab2:
 
     st.header("AI Email Assistant")
 
