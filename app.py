@@ -4,11 +4,15 @@ import numpy as np
 
 st.set_page_config(
     page_title="CPA Payroll Dashboard",
+    tab1, tab2 = st.tabs([
+    "Payroll Dashboard",
+    "AI Email Assistant"
+])
     layout="wide"
 )
 
 st.title("CPA Payroll Dashboard")
-
+with tab1:
 uploaded_file = st.file_uploader(
     "Upload Payroll Excel File",
     type=["xlsx"]
@@ -193,6 +197,39 @@ if uploaded_file:
             ]
         ]
     )
+    with tab2:
+
+    st.header("AI Email Assistant")
+
+    email_text = st.text_area(
+        "Paste Client Email",
+        height=200
+    )
+
+    if st.button("Generate Reply"):
+
+        if email_text:
+
+            reply = f"""
+Hello,
+
+Thank you for your email.
+
+We have received your request regarding:
+
+{email_text[:100]}
+
+Our team will review and respond shortly.
+
+Best Regards,
+CPA Team
+"""
+
+            st.text_area(
+                "Suggested Reply",
+                reply,
+                height=250
+            )
 
     # Download Report
     csv = hourly_df.to_csv(
