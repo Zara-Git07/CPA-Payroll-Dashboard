@@ -67,6 +67,27 @@ if uploaded_file:
         hourly_df["Regular Pay"]
         + hourly_df["OT Pay"]
     )
+    col1, col2, col3, col4 = st.columns(4)
+
+col1.metric(
+    "Employees",
+    len(hourly_df)
+)
+
+col2.metric(
+    "Total Payroll",
+    f"${hourly_df['Gross Pay'].sum():,.2f}"
+)
+
+col3.metric(
+    "Overtime Hours",
+    hourly_df["Overtime Hours"].sum()
+)
+
+col4.metric(
+    "OT Employees",
+    len(hourly_df[hourly_df["Overtime Hours"] > 0])
+)
 
     st.subheader("Payroll Summary")
 
