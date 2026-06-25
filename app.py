@@ -18,6 +18,7 @@ if uploaded_file:
 
     # Read Excel File
     df = pd.read_excel(uploaded_file)
+    st.write(df.columns.tolist())
 
     st.subheader("Raw Payroll Data")
     st.dataframe(df)
